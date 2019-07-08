@@ -1,0 +1,24 @@
+const express = require ('express');
+const mysql   = require('mysql');
+
+
+
+const db = mysql.createConnection({
+ host     : 'localhost',
+ user     : 'admin',
+ password : 'student',
+});
+db.connect(function(err){
+    if (err) throw err
+    console.log("my sql is connected looking good!")
+});
+const api = express();
+api.get ('/createdb',(req,res )=>{
+   db.query('CREATE DATABASE blogapi', (err,result) => {
+       if(err) throw err;
+       console.log(result);
+       res.send('Database was created..');
+   });
+});
+api.listen(5000);
+console.log("server is live")

@@ -32,7 +32,7 @@ api.get("/createposttable", (req, res)=> {
   // title string
   // body string
   // primary key will be id
-  let sql = 'CREATE TABLE posts(ID int NOT NULL AUTO_INCREMENT, title varchar(255), body varchar(255),PRIMARY KEY (ID) );'
+  let sql = 'CREATE TABLE post(ID int NOT NULL AUTO_INCREMENT, title varchar(255), body varchar(255),PRIMARY KEY (ID) );'
   db.query(sql, (err, result) =>{
       if(err) throw err;
       console.log(result);
@@ -43,7 +43,7 @@ api.get("/createposttable", (req, res)=> {
 // inserts a post into the post table
 api.get("/addpost", (req, res) => {
   let post = {title: "My first post", body: "Hello, today was a good day in Indian River"}
-  let sql = 'INSERT INTO posts SET ?'
+  let sql = 'INSERT INTO post SET ?'
   db.query(sql, post,(err, result) =>{
       if(err) throw err;
       console.log(result);
@@ -53,7 +53,7 @@ api.get("/addpost", (req, res) => {
 
 api.get("/addpost2", (req, res) => {
   let post = {title: "My second post", body: "Hello, today was a good day in Indian River"}
-  let sql = 'INSERT INTO posts SET ?'
+  let sql = 'INSERT INTO post SET ?'
   db.query(sql, post,(err, result) =>{
       if(err) throw err;
       console.log(result);
@@ -62,7 +62,7 @@ api.get("/addpost2", (req, res) => {
 });
 // select all posts
 api.get("/getpost/:id", (req, res) => {
-  let sql = 'SELECT * FROM posts WHERE ID=' + req.params.id;
+  let sql = 'SELECT * FROM post WHERE ID=' + req.params.id;
   db.query(sql, (err, result) =>{
       if(err) throw err;
       console.log(result);
@@ -72,7 +72,7 @@ api.get("/getpost/:id", (req, res) => {
 
 //delete a post
 api.get("/deletepost/:id", (req, res) => {
-  let sql = 'DELETE  FROM posts WHERE ID=' + req.params.id;
+  let sql = 'DELETE  FROM post WHERE ID=' + req.params.id;
   db.query(sql, (err, result) =>{
       if(err) throw err;
       console.log(result);
